@@ -19,7 +19,6 @@ class AnimationSettings {
     
     var visionFieldRadius: CGFloat = 60
     var visionFieldColor: CGColor = Settings.orangeColor.cgColor
-    
 }
 
 class AnimationView: UIView {
@@ -73,7 +72,6 @@ class AnimationView: UIView {
         
         let headShape = HeadShape(radius: 20, center: movedCenter)
         layer.addSublayer(headShape)
-        
     }
     
     func update(){
@@ -95,11 +93,7 @@ class AnimationView: UIView {
                 }
             })
         }
-        
-        
-        
     }
-    
 }
 
 extension AnimationView: GlobalTimecodeDelegate {
@@ -151,10 +145,7 @@ class VisionFieldShape: CAShapeLayer {
     required init?(coder aDecoder: NSCoder) {
         fatalError("Required init not implemented")
     }
-    
-    
 }
-
 
 class HeadShape: CAShapeLayer {
     

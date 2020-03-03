@@ -26,18 +26,11 @@ class KeyframesTableViewCell : UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: .didChangeTimecodeFormat, object: nil)
-        
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = contentView.backgroundColor;
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
     @objc func updateData() {

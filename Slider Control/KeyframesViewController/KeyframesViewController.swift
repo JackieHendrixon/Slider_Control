@@ -31,7 +31,6 @@ class KeyframesViewController: UIViewController {
         SliderController.instance.delegates.append(self)
         GlobalTimecode.delegates.append(self)
         
-        
         tableView.backgroundColor = .clear
         Sequence.instance.sort()
         
@@ -42,7 +41,6 @@ class KeyframesViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateTableView), name: .didUpdateSequence, object: nil)
     }
 
-    
     @objc func updateTableView(){
         tableView.reloadData()
     }

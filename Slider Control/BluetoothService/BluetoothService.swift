@@ -47,7 +47,6 @@ class BluetoothService: NSObject {
     public override init() {
         super.init()
         
-        // Tip: Perform Bluetooth tasks on background queue
         let backgroundQueue = DispatchQueue.global(qos: .background)
         
         self.centralManager = CBCentralManager(delegate:self, queue:backgroundQueue)
@@ -56,7 +55,6 @@ class BluetoothService: NSObject {
     public init(delegate: BluetoothServiceDelegate) {
         super.init()
         
-        // Tip: Perform Bluetooth tasks on background queue
         let backgroundQueue = DispatchQueue.global(qos: .background)
         
         self.centralManager = CBCentralManager(delegate:self, queue:backgroundQueue)
@@ -131,9 +129,7 @@ extension BluetoothService: CBCentralManagerDelegate{
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        /** Received Signal Strength Indicator (RSSI)
-         is a measurement of the power present in a received radio signal */
-        
+
         // Retrieve the peripheral nameform the advertisement data
         if let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             debugPrint("[Peripheral Device]: - \(peripheralName)")

@@ -9,11 +9,6 @@
 
 import Foundation
 
-//enum SliderMode: {
-//    case live
-//    case sequence
-//}
-
 class SliderID{
     static var service = "FFE0"
     static var characteristic = "FFE1"
@@ -83,7 +78,6 @@ protocol SliderDelegate {
     
     func didUpdatePosition()
 }
-
 
 extension NSNotification.Name {
     static let didSwitchMode = NSNotification.Name("did-switch-mode")

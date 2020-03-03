@@ -89,25 +89,16 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingsSections.credits.rawValue: return cellsForCredits(indexPath: indexPath)
         default: return UITableViewCell()
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height))
         returnedView.backgroundColor = .darkGray
-//        let bottomBorder = UIView(frame: CGRect(x: 0, y: 30, width: returnedView.bounds.width, height: 1))
-//        bottomBorder.backgroundColor = .white
-//        returnedView.addSubview(bottomBorder)
-        
-        
+
         let label = UILabel(frame: CGRect(x: 5, y: 0, width: tableView.bounds.width, height: 25))
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -122,7 +113,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         returnedView.addSubview(label)
         return returnedView
-        
     }
     
     func cellsForConnection(indexPath: IndexPath) -> UITableViewCell{
@@ -146,7 +136,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func cellsForMode(indexPath: IndexPath) -> UITableViewCell{
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "segmentedControlSettingsCell", for: indexPath) as! SegmentedControlTableViewCell
         cell.label.text = "Mode"
         cell.control.removeAllSegments()
@@ -189,7 +178,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.toTextField.delegate = self
         cell.fromTextField.delegate = self
         
-        
         return cell
     }
     
@@ -219,8 +207,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
     }
+    
     func cellsForJoystick(indexPath: IndexPath) -> UITableViewCell{
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldSettingsCell", for: indexPath) as! TextFieldTableViewCell
         cell.label.text = "Size"
         cell.textField.placeholder = String(100)
@@ -263,8 +252,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
-
 
 extension SettingsViewController: UITextFieldDelegate{
     
@@ -310,6 +297,7 @@ extension SettingsViewController: UITextFieldDelegate{
             textField.text = nil
         }
     }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -327,9 +315,6 @@ extension SettingsViewController: UITextFieldDelegate{
         }
     }
 }
-
-
-
 
 enum SettingsSections: Int, CaseIterable {
     case connection = 0,

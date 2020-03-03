@@ -90,6 +90,7 @@ class ModifyKeyframeViewController: UIViewController, UIPickerViewDelegate, UIPi
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             return
         }
+        
         var timecode: Timecode
         
         // Prepare values for the keyframe to be sent.
@@ -130,7 +131,6 @@ class ModifyKeyframeViewController: UIViewController, UIPickerViewDelegate, UIPi
                 return 60
             case 2:
                 return Timecode.FPS
-                
             default:
                 return 0
             }

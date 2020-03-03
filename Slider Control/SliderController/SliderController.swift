@@ -25,8 +25,6 @@ class SliderController {
     
     // MARK: Properties
     
-    
-    
     let slider: Slider = Slider()
     
     private let bluetoothService: BluetoothService = BluetoothService()
@@ -99,8 +97,6 @@ class SliderController {
     
     // Moves slider with desired speed.
     func moveOn(gear: Int, parameter: String) {
-
-        
         if slider.isConnected {
             var command: String
             switch parameter {
@@ -229,16 +225,13 @@ class SliderController {
                 slider.currentPosition = calibration.convertStepsToValue(steps: parameters)
             }
             
-        
         default:
             print("Unspecified value: \(feedback)")
         }
     }
     
     private func decodeParameters(string: String) -> Parameters {
-        
-        
-        
+
         var range = (string.firstIndex(of: SliderCommandSign.x.rawValue.first!)!)..<(string.firstIndex(of: SliderCommandSign.pan.rawValue.first!)!)
         var substring = string[range]
         substring = substring.suffix(substring.count-1)
@@ -248,8 +241,6 @@ class SliderController {
         substring = string[range]
         substring = substring.suffix(substring.count-1)
         let pan = Float(String(substring))!
-        
-        
         
         range = (string.firstIndex(of: SliderCommandSign.tilt.rawValue.first!)!)..<(string.firstIndex(of: SliderCommandSign.end.rawValue.first!)!)
         substring = string[range]
@@ -272,7 +263,6 @@ class SliderController {
             }
         }
     }
-    
 }
 
 
@@ -362,20 +352,10 @@ extension SliderController: JoystickDelegate{
                     print(slider.currentSpeed)
                     moveOn(gear: Int(slider.currentSpeed.tilt), parameter: "tilt" )
                 }
-            
                 break
             default:
                 break
             }
         }
-    }
-}
-
-extension SliderController: SliderDelegate {
-    func didUpdateSpeed() {
-        
-    }
-    func didUpdatePosition() {
-        
     }
 }

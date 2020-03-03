@@ -17,6 +17,4 @@ class TabBarController: UITabBarController {
         // Sets the tabBar images color 
         tabBar.tintColor = Settings.orangeColor
     }
-    
-
 }

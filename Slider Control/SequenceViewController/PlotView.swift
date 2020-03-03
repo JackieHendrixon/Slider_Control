@@ -120,8 +120,6 @@ extension TriplePlotView: GlobalTimecodeDelegate {
     func didUpdateGlobalTimecode() {
         updateIndicatorPosition()
     }
-    
-    
 }
 
 
@@ -142,7 +140,6 @@ class IndicatorView: UIView {
         return frame.contains(point) ? self : nil
     }
     
-    
 }
 
 
@@ -161,7 +158,6 @@ class PlotView: UIView {
             draw()
         }
     }
-    
     
     override var bounds: CGRect {
         didSet {
@@ -190,7 +186,7 @@ class PlotView: UIView {
             max.y = CGFloat(Keyframe.parametersRange.max.pan)
         case .tilt:
             max.y = CGFloat(Keyframe.parametersRange.max.tilt)
-        }  
+        }
         
         if let keyframes = sequence.keyframes {
             points.removeAll()
@@ -223,8 +219,6 @@ class PlotView: UIView {
         
         drawGrid()
         drawPlot(points: points)
-        
-        
     }
     
     func drawBackground(){
@@ -241,6 +235,7 @@ class PlotView: UIView {
         let rect = CGRect(x: bounds.origin.x + settings.plotPointSize/2, y: bounds.origin.y + settings.plotPointSize/2, width: bounds.width - settings.plotPointSize, height: bounds.height - settings.plotPointSize)
         layer.addSublayer(gridLayer(frame: rect, max: max, settings: settings))
     }
+    
     func drawPlot(points: [CGPoint]){
         layer.sublayers?.removeAll{$0 is plotLayer == true }
         let rect = CGRect(x: bounds.origin.x + settings.plotPointSize/2, y: bounds.origin.y + settings.plotPointSize/2, width: bounds.width - settings.plotPointSize, height: bounds.height - settings.plotPointSize)
@@ -254,10 +249,6 @@ extension PlotView: SequenceDelegate{
         draw()
     }
 }
-
-
-
-
 
 class plotLayer: CALayer {
     
@@ -274,7 +265,6 @@ class plotLayer: CALayer {
         drawPlot(points: points, max: max)
     }
     
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("Not implemented")
     }
@@ -310,7 +300,6 @@ class plotLayer: CALayer {
             }
         }
     }
-    
 }
 
 class gridLayer: CALayer {
@@ -326,8 +315,6 @@ class gridLayer: CALayer {
         super.init()
         self.frame = frame
         
-   
-        
         opacity = 0.6
         var interval = CGPoint(x: 5, y: 10)
         while max.x/interval.x > settings.gridMaxVerticalLines {
@@ -339,8 +326,6 @@ class gridLayer: CALayer {
         
         drawVerticalLines(maxX: max.x, interval: interval.x)
         drawHorizontalLines(maxY: max.y, interval: interval.y)
-        
-        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("Not implemented")

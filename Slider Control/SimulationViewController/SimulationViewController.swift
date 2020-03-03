@@ -40,7 +40,6 @@ class SimulationViewController: UIViewController {
         // Setting animation view
         rightAnimationView.withRail = false
         
-        
         // Setting joysticks
         leftJoystick.delegate = SliderController.instance
         leftJoystick.accessibilityIdentifier = "leftJoystick"
@@ -90,7 +89,6 @@ class SimulationViewController: UIViewController {
                 SliderController.instance.moveTo(position: Sequence.instance.calculateParameters(for: GlobalTimecode.current))
             }
         }
-        
     }
     
     @IBAction func modeChangeAction(_ sender: UISegmentedControl) {
@@ -116,7 +114,6 @@ class SimulationViewController: UIViewController {
             Sequence.instance.keyframes?.append(keyframe)
             Sequence.instance.sort()
         }
-        
     }
     
     private func updateProgressView(){

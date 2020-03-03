@@ -16,13 +16,11 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         picker.delegate = self
         
         backgroundView.layer.shadowOpacity = 0.15
         backgroundView.layer.shadowRadius = 20
         backgroundView.layer.shadowColor = UIColor.black.cgColor
-        
         
         addTapGesture()
     }
@@ -35,7 +33,6 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
         } else {
             picker.selectRow(GlobalTimecode.current.totalFrames, inComponent: 0, animated: true)
         }
-        
     }
     
     // MARK: - Navigation
@@ -48,9 +45,6 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
     }
-    
-    
-    
     
     private func addTapGesture(){
         let tap = UITapGestureRecognizer(target: self, action: #selector (self.handleTapGesture(_:)))
@@ -72,9 +66,7 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
         GlobalTimecode.current = timecode
         
-        
         dismiss(animated: true, completion: nil)
-        
     }
     
     // MARK: - UIPickerDelegate and UIPickerDataSource.
@@ -114,5 +106,4 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
         return touch.view == gestureRecognizer.view
     }
-
 }

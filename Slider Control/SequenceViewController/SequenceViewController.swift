@@ -12,7 +12,7 @@ import UIKit
 
 class SequenceViewController: UIViewController {
     
-    // MARK: Properties
+    // MARK: - Properties
 
     @IBOutlet weak var connectionIndicator: Indicator!
     @IBOutlet weak var onlineIndicator: Indicator!
@@ -36,6 +36,7 @@ class SequenceViewController: UIViewController {
         updateIndicators()
     }
     
+    // MARK: - Actions
 
     @IBAction func previous(_ sender: UIButton) {
         GlobalTimecode.previousFrame()
@@ -57,7 +58,7 @@ class SequenceViewController: UIViewController {
         playButton.setImage(UIImage(named: "Play"), for: .normal)
     }
     
-    // Updates the indicator state
+    
     private func updateIndicators() {
         connectionIndicator.isOn = SliderController.instance.slider.isConnected
         onlineIndicator.isOn = SliderController.instance.slider.isOnline
@@ -75,7 +76,6 @@ class SequenceViewController: UIViewController {
         xPlotLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
         panPlotLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
         tiltPlotLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
-        
     }
 }
 
@@ -96,7 +96,5 @@ extension SequenceViewController: GlobalTimecodeDelegate {
     func didUpdateGlobalTimecode() {
         updateProgressView()
     }
-    
-    
 }
 
