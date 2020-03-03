@@ -18,12 +18,11 @@ class TimecodeLabel: UILabel {
         
         self.font = UIFont.monospacedDigitSystemFont(ofSize: self.font.pointSize, weight: UIFont.Weight.medium)
         
+        
         GlobalTimecode.delegates.append(self)
       
-        
-        
-        updateLabel()
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabel), name: .didChangeTimecodeFormat, object: nil)
+        updateLabel()
     }
     
     // MARK: - Private functions

@@ -9,11 +9,6 @@
 import UIKit
 
 
-
-
-
-
-
 enum PlotType: CaseIterable{
     case x, pan, tilt
 }
@@ -40,7 +35,6 @@ class PlotSettings {
     var textColor: CGColor = UIColor.white.cgColor
     
 }
-
 
 class TriplePlotView: UIView {
     let settings = PlotSettings()
@@ -188,8 +182,6 @@ class PlotView: UIView {
         draw()
     }
     
-    
-    
     func draw(){
         switch type {
         case .x:
@@ -198,8 +190,7 @@ class PlotView: UIView {
             max.y = CGFloat(Keyframe.parametersRange.max.pan)
         case .tilt:
             max.y = CGFloat(Keyframe.parametersRange.max.tilt)
-        }
-        
+        }  
         
         if let keyframes = sequence.keyframes {
             points.removeAll()

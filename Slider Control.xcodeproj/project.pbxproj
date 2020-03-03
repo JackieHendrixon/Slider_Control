@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F503AC5023DF0B080012A503 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503AC4F23DF0B080012A503 /* Bluetooth.swift */; };
+		F503AC5023DF0B080012A503 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503AC4F23DF0B080012A503 /* BluetoothService.swift */; };
 		F503AC5323DF0B880012A503 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503AC5223DF0B880012A503 /* Device.swift */; };
 		F503AC5523DF0B970012A503 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503AC5423DF0B970012A503 /* Service.swift */; };
 		F50F543723DB25B5006156AD /* KeyframesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50F543623DB25B5006156AD /* KeyframesTableViewCell.swift */; };
@@ -60,7 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F503AC4F23DF0B080012A503 /* Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
+		F503AC4F23DF0B080012A503 /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 		F503AC5223DF0B880012A503 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		F503AC5423DF0B970012A503 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		F50F543623DB25B5006156AD /* KeyframesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyframesTableViewCell.swift; sourceTree = "<group>"; };
@@ -137,21 +137,20 @@
 		F503AC4923DF0A560012A503 /* SimulationViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F5312DFC23DDDECF0084F91F /* Joystick.swift */,
+				F5312DFE23DDDF7D0084F91F /* AnimationView.swift */,
 				F5AC544823DDDDE600FDEA33 /* SimulationViewController.swift */,
 			);
 			path = SimulationViewController;
 			sourceTree = "<group>";
 		};
-		F503AC4A23DF0A7B0012A503 /* Components */ = {
+		F503AC4A23DF0A7B0012A503 /* ReusableComponents */ = {
 			isa = PBXGroup;
 			children = (
 				F55F799F23DA5788008AF8A1 /* TimecodeLabel.swift */,
-				F5312DFC23DDDECF0084F91F /* Joystick.swift */,
-				F5D2814A23E4E8B7009B0092 /* PlotView.swift */,
-				F5312DFE23DDDF7D0084F91F /* AnimationView.swift */,
 				F5D0D8A823E3715A0044BBAC /* Indicator.swift */,
 			);
-			path = Components;
+			path = ReusableComponents;
 			sourceTree = "<group>";
 		};
 		F503AC4B23DF0A900012A503 /* Models */ = {
@@ -166,21 +165,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F503AC4C23DF0AAC0012A503 /* Navigation */ = {
+		F503AC4C23DF0AAC0012A503 /* TabBarNavigtionController */ = {
 			isa = PBXGroup;
 			children = (
 				F5312E0223DE2C840084F91F /* TabBarController.swift */,
 			);
-			path = Navigation;
+			path = TabBarNavigtionController;
 			sourceTree = "<group>";
 		};
-		F503AC4E23DF0ACF0012A503 /* Bluetooth */ = {
+		F503AC4E23DF0ACF0012A503 /* BluetoothService */ = {
 			isa = PBXGroup;
 			children = (
-				F503AC4F23DF0B080012A503 /* Bluetooth.swift */,
+				F503AC4F23DF0B080012A503 /* BluetoothService.swift */,
 				F503AC5123DF0B610012A503 /* Models */,
 			);
-			path = Bluetooth;
+			path = BluetoothService;
 			sourceTree = "<group>";
 		};
 		F503AC5123DF0B610012A503 /* Models */ = {
@@ -214,15 +213,15 @@
 			isa = PBXGroup;
 			children = (
 				F5D0D8A323E31E830044BBAC /* SequenceViewController */,
-				F503AC4E23DF0ACF0012A503 /* Bluetooth */,
-				F503AC4C23DF0AAC0012A503 /* Navigation */,
+				F503AC4E23DF0ACF0012A503 /* BluetoothService */,
+				F503AC4C23DF0AAC0012A503 /* TabBarNavigtionController */,
 				F503AC4923DF0A560012A503 /* SimulationViewController */,
 				F503AC4823DF0A3F0012A503 /* KeyframesViewController */,
 				F5CF412023FDF13D00D4F04E /* ChangeTimecodeViewController */,
-				F5CF411F23FDF12600D4F04E /* Slider */,
+				F5CF411F23FDF12600D4F04E /* SliderController */,
 				F5D2814723E47A0B009B0092 /* SettingsViewController */,
 				F5CF412123FDF15300D4F04E /* ConnectionViewController */,
-				F503AC4A23DF0A7B0012A503 /* Components */,
+				F503AC4A23DF0A7B0012A503 /* ReusableComponents */,
 				F503AC4B23DF0A900012A503 /* Models */,
 				F55F797123DA5602008AF8A1 /* AppDelegate.swift */,
 				F55F797523DA5602008AF8A1 /* Main.storyboard */,
@@ -233,13 +232,13 @@
 			path = "Slider Control";
 			sourceTree = "<group>";
 		};
-		F5CF411F23FDF12600D4F04E /* Slider */ = {
+		F5CF411F23FDF12600D4F04E /* SliderController */ = {
 			isa = PBXGroup;
 			children = (
 				F5312E0023DDF61E0084F91F /* SliderController.swift */,
 				F5D0D8A123E1E0C50044BBAC /* Slider.swift */,
 			);
-			path = Slider;
+			path = SliderController;
 			sourceTree = "<group>";
 		};
 		F5CF412023FDF13D00D4F04E /* ChangeTimecodeViewController */ = {
@@ -262,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				F5D0D8A423E31EAD0044BBAC /* SequenceViewController.swift */,
+				F5D2814A23E4E8B7009B0092 /* PlotView.swift */,
 			);
 			path = SequenceViewController;
 			sourceTree = "<group>";
@@ -437,7 +437,7 @@
 				F55F79A223DA6C2F008AF8A1 /* Timecode.swift in Sources */,
 				F5A29DEA23E72BFE003EE481 /* TextFieldTableViewCell.swift in Sources */,
 				F5A29DEE23E745A6003EE481 /* RangeTableViewCell.swift in Sources */,
-				F503AC5023DF0B080012A503 /* Bluetooth.swift in Sources */,
+				F503AC5023DF0B080012A503 /* BluetoothService.swift in Sources */,
 				F52F532223DF536000ADE633 /* Sequence.swift in Sources */,
 				F5312DFF23DDDF7D0084F91F /* AnimationView.swift in Sources */,
 			);
