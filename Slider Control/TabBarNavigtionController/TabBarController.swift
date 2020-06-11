@@ -15,6 +15,6 @@ class TabBarController: UITabBarController {
         super.viewWillLayoutSubviews()
         
         // Sets the tabBar images color 
-        tabBar.tintColor = Settings.orangeColor
+        tabBar.tintColor = UIColor.appOrange
     }
 }

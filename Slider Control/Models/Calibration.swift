@@ -15,8 +15,6 @@ struct Calibration {
     var deviceStepsRange: Parameters
     var appValueRange: Parameters
     
-    
-    
     func convertValueToSteps(value: Parameters) -> Parameters{
         let x = value.x * deviceStepsRange.x / appValueRange.x
         let pan = value.pan * deviceStepsRange.pan / appValueRange.pan
@@ -32,5 +30,4 @@ struct Calibration {
         
         return Parameters(x: x, pan: pan, tilt: tilt)
     }
-    
 }

@@ -40,7 +40,7 @@ class SliderController {
     
     init() {
         bluetoothService.delegate = self
-        GlobalTimecode.delegates.append(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateCurrentTimecode), name: .didUpdateCurrentTimecode, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTimer), name: .didSwitchMode, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTimer), name: .didUpdateConnection, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchSliderMode), name: .didSwitchMode, object: nil)
@@ -257,10 +257,19 @@ class SliderController {
                 
             } else {
                 write(string: SliderCommandSign.sequenceMode.rawValue)
+                print("Switching mode")
                 if slider.isOnline {
-                    moveTo(position: Sequence.instance.calculateParameters(for: GlobalTimecode.current))
+                    moveTo(position: Sequence.instance.calculateParameters(for: CurrentTimecode.current))
                 }
             }
+        }
+    }
+    
+    
+    // Can be done better
+    @objc private func didUpdateCurrentTimecode() {
+        if slider.isOnline && slider.mode == .sequence {
+            moveTo(position: NewSequenceModel.instance.calculateParameters(for: CurrentTimecode.current))
         }
     }
 }
@@ -304,13 +313,7 @@ extension SliderController: BluetoothServiceDelegate {
     }
 }
 
-extension SliderController: GlobalTimecodeDelegate {
-    func didUpdateGlobalTimecode() {
-        if slider.isOnline && slider.mode == .sequence {
-            moveTo(position: Sequence.instance.calculateParameters(for: GlobalTimecode.current))
-        }
-    }
-}
+
 
 extension SliderController: JoystickDelegate{
     func didUpdate(data: JoystickData, sender: Joystick) {

@@ -9,12 +9,18 @@
 
 import Foundation
 
-
-
-// A model of timecode. Static part is used to hold current timecode. Also provides a timer.
+// TimecodeModel
 class Timecode: NSObject {
     static func == (lhs: Timecode, rhs: Timecode) -> Bool {
         return lhs.totalFrames == rhs.totalFrames
+    }
+    
+    static func > (lhs: Timecode, rhs: Timecode) -> Bool {
+        return lhs.totalFrames > rhs.totalFrames
+    }
+    
+    static func < (lhs: Timecode, rhs: Timecode) -> Bool {
+        return lhs.totalFrames < rhs.totalFrames
     }
     
     static var FPS: Int = 24
@@ -26,9 +32,25 @@ class Timecode: NSObject {
 
     // MARK: - Properties
     
-    var frame: Int = 0
-    var sec: Int = 0
-    var min: Int = 0
+    var frame: Int {
+        willSet {
+            guard newValue >= 0, newValue < Timecode.FPS
+                else {
+                    fatalError("Fatal error: Attempt to set forbidden value for Timecode.frame")
+            }
+        }
+    }
+    
+    var sec: Int {
+        willSet {
+            guard newValue >= 0, newValue < 60 else { fatalError("Fatal error: Attempt to set forbidden value for Timecode.sec")}
+        }
+    }
+    var min: Int {
+        willSet {
+            guard newValue >= 0, newValue < 60 else { fatalError("Fatal error: Attempt to set forbidden value for Timecode.min")}
+        }
+    }
     
     var totalFrames: Int {
         return ((min*60)+sec)*Timecode.FPS + frame
@@ -46,10 +68,7 @@ class Timecode: NSObject {
     
     // MARK: - Init
     
-    init(min: Int, sec: Int, frame: Int) {
-        guard min >= 0 else {return}
-        guard sec >= 0 && sec < 60 else {return}
-        guard frame >= 0 && frame < Timecode.FPS else {return}
+    init(min: Int = 0, sec: Int = 0, frame: Int = 0) {
         
         self.min = min
         self.sec = sec
@@ -57,75 +76,10 @@ class Timecode: NSObject {
     }
     
     init(frames: Int) {
-        self.min = frames/Timecode.FPS/60
-        self.sec = frames/Timecode.FPS%60
+        self.min = frames/Timecode.FPS / 60
+        self.sec = frames/Timecode.FPS % 60
         self.frame = frames%Timecode.FPS
     } 
 }
 
-extension NSNotification.Name {
-    static let didChangeTimecodeFormat = NSNotification.Name("did-change-timecode-format")
-}
 
-// Protocol for updating timecode label
-protocol GlobalTimecodeDelegate {
-    func didUpdateGlobalTimecode()
-}
-
-class GlobalTimecode {
-    static var current: Timecode = Timecode(frames: 0){
-        didSet{
-
-            for delegate in delegates {
-                delegate.didUpdateGlobalTimecode()
-            }
-
-        }
-    }
-    
-    static var delegates = [GlobalTimecodeDelegate]()
-    
-    static private var timer = Timer()
-    
-    static var isRunning:Bool = false
-    
-    static func run(){
-        timer = Timer.scheduledTimer(timeInterval: 1.0/Double(Timecode.FPS), target: self, selector: #selector(GlobalTimecode.nextFrame), userInfo: nil, repeats: true)
-        isRunning = true
-    }
-    
-    static func pause() {
-        timer.invalidate()
-        isRunning = false
-    }
-    
-    @objc static func nextFrame(){
-        if let lastFrame = Sequence.instance.keyframes?.last?.timecode.totalFrames{
-            if current.totalFrames < lastFrame {
-                current = Timecode(frames: current.totalFrames + 1)
-            } else {
-                pause()
-            }
-        } else {
-            pause()
-        }
-        
-    }
-    
-    static func previousFrame(){
-        if(current.totalFrames - 1) >= 0 {
-            current = Timecode(frames: current.totalFrames - 1)
-        }
-    }
-    
-    static func stop(){
-        reset()
-        pause()
-    }
-    
-    static func reset() {
-        current = Timecode(frames: 0)
-    }
-    
-    
-}

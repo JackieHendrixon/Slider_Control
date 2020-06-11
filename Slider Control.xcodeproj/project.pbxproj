@@ -10,6 +10,7 @@
 		F503AC5023DF0B080012A503 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503AC4F23DF0B080012A503 /* BluetoothService.swift */; };
 		F503AC5323DF0B880012A503 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503AC5223DF0B880012A503 /* Device.swift */; };
 		F503AC5523DF0B970012A503 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503AC5423DF0B970012A503 /* Service.swift */; };
+		F50753A6242FC6C5005E1DED /* CurrentTimecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50753A5242FC6C5005E1DED /* CurrentTimecode.swift */; };
 		F50F543723DB25B5006156AD /* KeyframesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50F543623DB25B5006156AD /* KeyframesTableViewCell.swift */; };
 		F50F543B23DC9E81006156AD /* ModifyKeyframeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50F543A23DC9E81006156AD /* ModifyKeyframeViewController.swift */; };
 		F52F531E23DF509E00ADE633 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52F531D23DF509E00ADE633 /* Parameters.swift */; };
@@ -27,11 +28,19 @@
 		F55F79A023DA5788008AF8A1 /* TimecodeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F799F23DA5788008AF8A1 /* TimecodeLabel.swift */; };
 		F55F79A223DA6C2F008AF8A1 /* Timecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F79A123DA6C2F008AF8A1 /* Timecode.swift */; };
 		F55F79A423DA7297008AF8A1 /* Keyframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F79A323DA7297008AF8A1 /* Keyframe.swift */; };
+		F592FCF9243243A600C46765 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F592FCF8243243A600C46765 /* Settings.swift */; };
+		F592FCFB243244AC00C46765 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F592FCFA243244AC00C46765 /* Extensions.swift */; };
+		F59B49DC248EC5E4007142F6 /* BezierCurveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59B49DB248EC5E4007142F6 /* BezierCurveView.swift */; };
+		F59B49E0248EC63B007142F6 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59B49DE248EC63B007142F6 /* Math.swift */; };
+		F59B49E2248EC6E4007142F6 /* NewPlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59B49E1248EC6E4007142F6 /* NewPlotView.swift */; };
+		F59B49E424903674007142F6 /* Keyframes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59B49E324903674007142F6 /* Keyframes.swift */; };
+		F59B49E724903CA4007142F6 /* PlotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59B49E624903CA4007142F6 /* PlotViewModel.swift */; };
 		F5A29DEA23E72BFE003EE481 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A29DE923E72BFE003EE481 /* TextFieldTableViewCell.swift */; };
 		F5A29DEC23E72C1A003EE481 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A29DEB23E72C1A003EE481 /* SegmentedControlTableViewCell.swift */; };
 		F5A29DEE23E745A6003EE481 /* RangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A29DED23E745A6003EE481 /* RangeTableViewCell.swift */; };
-		F5A29DF023E763CF003EE481 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A29DEF23E763CF003EE481 /* Colors.swift */; };
 		F5AC544923DDDDE600FDEA33 /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AC544823DDDDE600FDEA33 /* SimulationViewController.swift */; };
+		F5C1A46D242FD71500DB9FEF /* Slider_ControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C1A46C242FD71500DB9FEF /* Slider_ControlTests.swift */; };
+		F5C1A475242FD8A700DB9FEF /* TimecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C1A474242FD8A700DB9FEF /* TimecodeTests.swift */; };
 		F5C3ACFA23E39E62001BB1B1 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C3ACF923E39E62001BB1B1 /* ConnectionViewController.swift */; };
 		F5D0D8A223E1E0C50044BBAC /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D0D8A123E1E0C50044BBAC /* Slider.swift */; };
 		F5D0D8A523E31EAD0044BBAC /* SequenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D0D8A423E31EAD0044BBAC /* SequenceViewController.swift */; };
@@ -43,19 +52,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F55F798323DA5604008AF8A1 /* PBXContainerItemProxy */ = {
+		F5C1A46F242FD71500DB9FEF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F55F796623DA5602008AF8A1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F55F796D23DA5602008AF8A1;
-			remoteInfo = Time;
-		};
-		F55F798E23DA5604008AF8A1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F55F796623DA5602008AF8A1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F55F796D23DA5602008AF8A1;
-			remoteInfo = Time;
+			remoteInfo = "Slider Control";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -63,6 +65,7 @@
 		F503AC4F23DF0B080012A503 /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 		F503AC5223DF0B880012A503 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		F503AC5423DF0B970012A503 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		F50753A5242FC6C5005E1DED /* CurrentTimecode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimecode.swift; sourceTree = "<group>"; };
 		F50F543623DB25B5006156AD /* KeyframesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyframesTableViewCell.swift; sourceTree = "<group>"; };
 		F50F543A23DC9E81006156AD /* ModifyKeyframeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyKeyframeViewController.swift; sourceTree = "<group>"; };
 		F52F531D23DF509E00ADE633 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
@@ -79,16 +82,24 @@
 		F55F797823DA5603008AF8A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F55F797B23DA5603008AF8A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F55F797D23DA5603008AF8A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F55F798223DA5604008AF8A1 /* Slider ControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Slider ControlTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F55F798D23DA5604008AF8A1 /* Slider ControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Slider ControlUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F55F799F23DA5788008AF8A1 /* TimecodeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecodeLabel.swift; sourceTree = "<group>"; };
 		F55F79A123DA6C2F008AF8A1 /* Timecode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timecode.swift; sourceTree = "<group>"; };
 		F55F79A323DA7297008AF8A1 /* Keyframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyframe.swift; sourceTree = "<group>"; };
+		F592FCF8243243A600C46765 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		F592FCFA243244AC00C46765 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F59B49DB248EC5E4007142F6 /* BezierCurveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierCurveView.swift; sourceTree = "<group>"; };
+		F59B49DE248EC63B007142F6 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		F59B49E1248EC6E4007142F6 /* NewPlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlotView.swift; sourceTree = "<group>"; };
+		F59B49E324903674007142F6 /* Keyframes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyframes.swift; sourceTree = "<group>"; };
+		F59B49E624903CA4007142F6 /* PlotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotViewModel.swift; sourceTree = "<group>"; };
 		F5A29DE923E72BFE003EE481 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		F5A29DEB23E72C1A003EE481 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		F5A29DED23E745A6003EE481 /* RangeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeTableViewCell.swift; sourceTree = "<group>"; };
-		F5A29DEF23E763CF003EE481 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F5AC544823DDDDE600FDEA33 /* SimulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
+		F5C1A46A242FD71500DB9FEF /* Slider ControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Slider ControlTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5C1A46C242FD71500DB9FEF /* Slider_ControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider_ControlTests.swift; sourceTree = "<group>"; };
+		F5C1A46E242FD71500DB9FEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5C1A474242FD8A700DB9FEF /* TimecodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimecodeTests.swift; sourceTree = "<group>"; };
 		F5C3ACF923E39E62001BB1B1 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		F5D0D8A123E1E0C50044BBAC /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		F5D0D8A423E31EAD0044BBAC /* SequenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceViewController.swift; sourceTree = "<group>"; };
@@ -107,14 +118,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F55F797F23DA5604008AF8A1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F55F798A23DA5604008AF8A1 /* Frameworks */ = {
+		F5C1A467242FD71500DB9FEF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -159,8 +163,12 @@
 				F52F531F23DF50BF00ADE633 /* Calibration.swift */,
 				F52F531D23DF509E00ADE633 /* Parameters.swift */,
 				F55F79A123DA6C2F008AF8A1 /* Timecode.swift */,
+				F50753A5242FC6C5005E1DED /* CurrentTimecode.swift */,
 				F55F79A323DA7297008AF8A1 /* Keyframe.swift */,
+				F59B49E324903674007142F6 /* Keyframes.swift */,
 				F52F532123DF536000ADE633 /* Sequence.swift */,
+				F592FCF8243243A600C46765 /* Settings.swift */,
+				F592FCFA243244AC00C46765 /* Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				F55F797023DA5602008AF8A1 /* Slider Control */,
+				F5C1A46B242FD71500DB9FEF /* Slider ControlTests */,
 				F55F796F23DA5602008AF8A1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -203,8 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				F55F796E23DA5602008AF8A1 /* Slider Control.app */,
-				F55F798223DA5604008AF8A1 /* Slider ControlTests.xctest */,
-				F55F798D23DA5604008AF8A1 /* Slider ControlUITests.xctest */,
+				F5C1A46A242FD71500DB9FEF /* Slider ControlTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 		F55F797023DA5602008AF8A1 /* Slider Control */ = {
 			isa = PBXGroup;
 			children = (
+				F59B49DE248EC63B007142F6 /* Math.swift */,
 				F5D0D8A323E31E830044BBAC /* SequenceViewController */,
 				F503AC4E23DF0ACF0012A503 /* BluetoothService */,
 				F503AC4C23DF0AAC0012A503 /* TabBarNavigtionController */,
@@ -222,6 +231,7 @@
 				F5D2814723E47A0B009B0092 /* SettingsViewController */,
 				F5CF412123FDF15300D4F04E /* ConnectionViewController */,
 				F503AC4A23DF0A7B0012A503 /* ReusableComponents */,
+				F59B49E524903C86007142F6 /* ViewModels */,
 				F503AC4B23DF0A900012A503 /* Models */,
 				F55F797123DA5602008AF8A1 /* AppDelegate.swift */,
 				F55F797523DA5602008AF8A1 /* Main.storyboard */,
@@ -230,6 +240,24 @@
 				F55F797D23DA5603008AF8A1 /* Info.plist */,
 			);
 			path = "Slider Control";
+			sourceTree = "<group>";
+		};
+		F59B49E524903C86007142F6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F59B49E624903CA4007142F6 /* PlotViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F5C1A46B242FD71500DB9FEF /* Slider ControlTests */ = {
+			isa = PBXGroup;
+			children = (
+				F5C1A474242FD8A700DB9FEF /* TimecodeTests.swift */,
+				F5C1A46C242FD71500DB9FEF /* Slider_ControlTests.swift */,
+				F5C1A46E242FD71500DB9FEF /* Info.plist */,
+			);
+			path = "Slider ControlTests";
 			sourceTree = "<group>";
 		};
 		F5CF411F23FDF12600D4F04E /* SliderController */ = {
@@ -261,7 +289,9 @@
 			isa = PBXGroup;
 			children = (
 				F5D0D8A423E31EAD0044BBAC /* SequenceViewController.swift */,
+				F59B49DB248EC5E4007142F6 /* BezierCurveView.swift */,
 				F5D2814A23E4E8B7009B0092 /* PlotView.swift */,
+				F59B49E1248EC6E4007142F6 /* NewPlotView.swift */,
 			);
 			path = SequenceViewController;
 			sourceTree = "<group>";
@@ -274,7 +304,6 @@
 				F5A29DE923E72BFE003EE481 /* TextFieldTableViewCell.swift */,
 				F5A29DED23E745A6003EE481 /* RangeTableViewCell.swift */,
 				F5A29DEB23E72C1A003EE481 /* SegmentedControlTableViewCell.swift */,
-				F5A29DEF23E763CF003EE481 /* Colors.swift */,
 			);
 			path = SettingsViewController;
 			sourceTree = "<group>";
@@ -299,41 +328,23 @@
 			productReference = F55F796E23DA5602008AF8A1 /* Slider Control.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F55F798123DA5604008AF8A1 /* Slider ControlTests */ = {
+		F5C1A469242FD71500DB9FEF /* Slider ControlTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F55F799923DA5604008AF8A1 /* Build configuration list for PBXNativeTarget "Slider ControlTests" */;
+			buildConfigurationList = F5C1A471242FD71500DB9FEF /* Build configuration list for PBXNativeTarget "Slider ControlTests" */;
 			buildPhases = (
-				F55F797E23DA5604008AF8A1 /* Sources */,
-				F55F797F23DA5604008AF8A1 /* Frameworks */,
-				F55F798023DA5604008AF8A1 /* Resources */,
+				F5C1A466242FD71500DB9FEF /* Sources */,
+				F5C1A467242FD71500DB9FEF /* Frameworks */,
+				F5C1A468242FD71500DB9FEF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F55F798423DA5604008AF8A1 /* PBXTargetDependency */,
+				F5C1A470242FD71500DB9FEF /* PBXTargetDependency */,
 			);
 			name = "Slider ControlTests";
-			productName = TimeTests;
-			productReference = F55F798223DA5604008AF8A1 /* Slider ControlTests.xctest */;
+			productName = "Slider ControlTests";
+			productReference = F5C1A46A242FD71500DB9FEF /* Slider ControlTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		F55F798C23DA5604008AF8A1 /* Slider ControlUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F55F799C23DA5604008AF8A1 /* Build configuration list for PBXNativeTarget "Slider ControlUITests" */;
-			buildPhases = (
-				F55F798923DA5604008AF8A1 /* Sources */,
-				F55F798A23DA5604008AF8A1 /* Frameworks */,
-				F55F798B23DA5604008AF8A1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F55F798F23DA5604008AF8A1 /* PBXTargetDependency */,
-			);
-			name = "Slider ControlUITests";
-			productName = TimeUITests;
-			productReference = F55F798D23DA5604008AF8A1 /* Slider ControlUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -348,11 +359,7 @@
 					F55F796D23DA5602008AF8A1 = {
 						CreatedOnToolsVersion = 10.1;
 					};
-					F55F798123DA5604008AF8A1 = {
-						CreatedOnToolsVersion = 10.1;
-						TestTargetID = F55F796D23DA5602008AF8A1;
-					};
-					F55F798C23DA5604008AF8A1 = {
+					F5C1A469242FD71500DB9FEF = {
 						CreatedOnToolsVersion = 10.1;
 						TestTargetID = F55F796D23DA5602008AF8A1;
 					};
@@ -372,8 +379,7 @@
 			projectRoot = "";
 			targets = (
 				F55F796D23DA5602008AF8A1 /* Slider Control */,
-				F55F798123DA5604008AF8A1 /* Slider ControlTests */,
-				F55F798C23DA5604008AF8A1 /* Slider ControlUITests */,
+				F5C1A469242FD71500DB9FEF /* Slider ControlTests */,
 			);
 		};
 /* End PBXProject section */
@@ -389,14 +395,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F55F798023DA5604008AF8A1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F55F798B23DA5604008AF8A1 /* Resources */ = {
+		F5C1A468242FD71500DB9FEF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -415,13 +414,14 @@
 				F5312E0123DDF61E0084F91F /* SliderController.swift in Sources */,
 				F50F543B23DC9E81006156AD /* ModifyKeyframeViewController.swift in Sources */,
 				F55F797423DA5602008AF8A1 /* KeyframesViewController.swift in Sources */,
-				F5A29DF023E763CF003EE481 /* Colors.swift in Sources */,
 				F55F79A423DA7297008AF8A1 /* Keyframe.swift in Sources */,
+				F59B49E724903CA4007142F6 /* PlotViewModel.swift in Sources */,
 				F5D0D8A523E31EAD0044BBAC /* SequenceViewController.swift in Sources */,
 				F52F532023DF50BF00ADE633 /* Calibration.swift in Sources */,
 				F5D2814623E458F4009B0092 /* SettingsViewController.swift in Sources */,
 				F5C3ACFA23E39E62001BB1B1 /* ConnectionViewController.swift in Sources */,
 				F5D2814B23E4E8B7009B0092 /* PlotView.swift in Sources */,
+				F59B49DC248EC5E4007142F6 /* BezierCurveView.swift in Sources */,
 				F503AC5323DF0B880012A503 /* Device.swift in Sources */,
 				F55F79A023DA5788008AF8A1 /* TimecodeLabel.swift in Sources */,
 				F52F531E23DF509E00ADE633 /* Parameters.swift in Sources */,
@@ -434,41 +434,37 @@
 				F5D0D8A723E3358C0044BBAC /* ChangeTimecodeViewController.swift in Sources */,
 				F5D2814923E47A6F009B0092 /* SwitchTableViewCell.swift in Sources */,
 				F5A29DEC23E72C1A003EE481 /* SegmentedControlTableViewCell.swift in Sources */,
+				F59B49E0248EC63B007142F6 /* Math.swift in Sources */,
 				F55F79A223DA6C2F008AF8A1 /* Timecode.swift in Sources */,
 				F5A29DEA23E72BFE003EE481 /* TextFieldTableViewCell.swift in Sources */,
+				F592FCF9243243A600C46765 /* Settings.swift in Sources */,
 				F5A29DEE23E745A6003EE481 /* RangeTableViewCell.swift in Sources */,
+				F59B49E2248EC6E4007142F6 /* NewPlotView.swift in Sources */,
+				F592FCFB243244AC00C46765 /* Extensions.swift in Sources */,
 				F503AC5023DF0B080012A503 /* BluetoothService.swift in Sources */,
 				F52F532223DF536000ADE633 /* Sequence.swift in Sources */,
+				F59B49E424903674007142F6 /* Keyframes.swift in Sources */,
+				F50753A6242FC6C5005E1DED /* CurrentTimecode.swift in Sources */,
 				F5312DFF23DDDF7D0084F91F /* AnimationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F55F797E23DA5604008AF8A1 /* Sources */ = {
+		F5C1A466242FD71500DB9FEF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F55F798923DA5604008AF8A1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				F5C1A46D242FD71500DB9FEF /* Slider_ControlTests.swift in Sources */,
+				F5C1A475242FD8A700DB9FEF /* TimecodeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F55F798423DA5604008AF8A1 /* PBXTargetDependency */ = {
+		F5C1A470242FD71500DB9FEF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F55F796D23DA5602008AF8A1 /* Slider Control */;
-			targetProxy = F55F798323DA5604008AF8A1 /* PBXContainerItemProxy */;
-		};
-		F55F798F23DA5604008AF8A1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F55F796D23DA5602008AF8A1 /* Slider Control */;
-			targetProxy = F55F798E23DA5604008AF8A1 /* PBXContainerItemProxy */;
+			targetProxy = F5C1A46F242FD71500DB9FEF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -646,19 +642,20 @@
 			};
 			name = Release;
 		};
-		F55F799A23DA5604008AF8A1 /* Debug */ = {
+		F5C1A472242FD71500DB9FEF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TimeTests/Info.plist;
+				DEVELOPMENT_TEAM = RDUN59BZKF;
+				INFOPLIST_FILE = "Slider ControlTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Frankie.TimeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "Frankie.Slider-ControlTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -666,61 +663,24 @@
 			};
 			name = Debug;
 		};
-		F55F799B23DA5604008AF8A1 /* Release */ = {
+		F5C1A473242FD71500DB9FEF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TimeTests/Info.plist;
+				DEVELOPMENT_TEAM = RDUN59BZKF;
+				INFOPLIST_FILE = "Slider ControlTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Frankie.TimeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "Frankie.Slider-ControlTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Slider Control.app/Slider Control";
-			};
-			name = Release;
-		};
-		F55F799D23DA5604008AF8A1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TimeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Frankie.TimeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Time;
-			};
-			name = Debug;
-		};
-		F55F799E23DA5604008AF8A1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TimeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Frankie.TimeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Time;
 			};
 			name = Release;
 		};
@@ -745,20 +705,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F55F799923DA5604008AF8A1 /* Build configuration list for PBXNativeTarget "Slider ControlTests" */ = {
+		F5C1A471242FD71500DB9FEF /* Build configuration list for PBXNativeTarget "Slider ControlTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F55F799A23DA5604008AF8A1 /* Debug */,
-				F55F799B23DA5604008AF8A1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F55F799C23DA5604008AF8A1 /* Build configuration list for PBXNativeTarget "Slider ControlUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F55F799D23DA5604008AF8A1 /* Debug */,
-				F55F799E23DA5604008AF8A1 /* Release */,
+				F5C1A472242FD71500DB9FEF /* Debug */,
+				F5C1A473242FD71500DB9FEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

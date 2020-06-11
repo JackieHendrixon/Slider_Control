@@ -15,10 +15,10 @@ class AnimationSettings {
     var railColor: CGColor = UIColor.orange.cgColor
     
     var headRadius: CGFloat = 20
-    var headColor: CGColor = Settings.orangeColor.cgColor
+    var headColor: CGColor = UIColor.appOrange.cgColor
     
     var visionFieldRadius: CGFloat = 60
-    var visionFieldColor: CGColor = Settings.orangeColor.cgColor
+    var visionFieldColor: CGColor = UIColor.appOrange.cgColor
 }
 
 class AnimationView: UIView {
@@ -40,7 +40,7 @@ class AnimationView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupBackground()
-        GlobalTimecode.delegates.append(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(update), name: .didUpdateCurrentTimecode, object: nil)
         SliderController.instance.slider.delegates.append(self)
     }
     
@@ -74,10 +74,10 @@ class AnimationView: UIView {
         layer.addSublayer(headShape)
     }
     
-    func update(){
+    @objc func update(){
         var parameters: Parameters
         if SliderController.instance.slider.mode == .sequence {
-            parameters = Sequence.instance.calculateParameters(for: GlobalTimecode.current)
+            parameters = NewSequenceModel.instance.calculateParameters(for: CurrentTimecode.current)
             if withRail {
                 draw(position: CGFloat(parameters.x), angle: CGFloat(parameters.pan) + 45)
             } else {
@@ -96,11 +96,6 @@ class AnimationView: UIView {
     }
 }
 
-extension AnimationView: GlobalTimecodeDelegate {
-    func didUpdateGlobalTimecode() {
-        update()
-    }
-}
 
 extension AnimationView: SequenceDelegate {
     func didUpdate() {

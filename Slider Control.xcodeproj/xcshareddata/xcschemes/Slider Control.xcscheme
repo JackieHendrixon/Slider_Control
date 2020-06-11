@@ -32,19 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F55F798123DA5604008AF8A1"
+               BlueprintIdentifier = "F5C1A469242FD71500DB9FEF"
                BuildableName = "Slider ControlTests.xctest"
                BlueprintName = "Slider ControlTests"
-               ReferencedContainer = "container:Slider Control.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F55F798C23DA5604008AF8A1"
-               BuildableName = "Slider ControlUITests.xctest"
-               BlueprintName = "Slider ControlUITests"
                ReferencedContainer = "container:Slider Control.xcodeproj">
             </BuildableReference>
          </TestableReference>

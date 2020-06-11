@@ -28,14 +28,19 @@ class SimulationViewController: UIViewController {
     @IBOutlet weak var sequenceNavigationButtons: UIStackView!
     @IBOutlet weak var progressView: UIProgressView!
     
+    @IBOutlet weak var infoView: UIView!
     // MARK: - Init
+    
+    @IBOutlet weak var orangeBarBottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var infoViewBottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Registering delegation
         SliderController.instance.delegates.append(self)
-        GlobalTimecode.delegates.append(self)
+        
         
         // Setting animation view
         rightAnimationView.withRail = false
@@ -46,33 +51,39 @@ class SimulationViewController: UIViewController {
         rightJoystick.delegate = SliderController.instance
         rightJoystick.accessibilityIdentifier = "rightJoystick"
         
+        setupInfoView()
+        
         updateLayout()
         updateProgressView()
         updateAnimationViews()
         
         NotificationCenter.default.addObserver(self, selector: #selector(didSwitchMode), name: .didSwitchMode , object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProgressView), name: .didUpdateCurrentTimecode, object: nil)
+        
+
     }
     
     @IBAction func previousAction(_ sender: UIButton) {
-        GlobalTimecode.previousFrame()
+        CurrentTimecode.previousFrame()
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        GlobalTimecode.nextFrame()
+        CurrentTimecode.nextFrame()
     }
     
     @IBAction func playAction(_ sender: UIButton) {
-        if !GlobalTimecode.isRunning {
-            GlobalTimecode.run()
+        if !CurrentTimecode.isRunning {
+            CurrentTimecode.run()
             playButton.setImage(UIImage(named: "Pause"), for: .normal)
         } else {
-            GlobalTimecode.pause()
+            CurrentTimecode.pause()
             playButton.setImage(UIImage(named: "Play"), for: .normal)
         }
     }
     
     @IBAction func stop(_ sender: UIButton) {
-        GlobalTimecode.stop()
+        CurrentTimecode.stop()
         playButton.setImage(UIImage(named: "Play"), for: .normal)
         
     }
@@ -86,7 +97,7 @@ class SimulationViewController: UIViewController {
             if slider.isConnected {
                 slider.isOnline = true
                 onlineIndicator.isOn = true
-                SliderController.instance.moveTo(position: Sequence.instance.calculateParameters(for: GlobalTimecode.current))
+                SliderController.instance.moveTo(position: Sequence.instance.calculateParameters(for: CurrentTimecode.current))
             }
         }
     }
@@ -105,7 +116,7 @@ class SimulationViewController: UIViewController {
         let slider = SliderController.instance.slider
         if slider.isConnected && slider.mode == .live {
             let position = slider.currentPosition
-            let keyframe = Keyframe(timecode: GlobalTimecode.current, parameters: position)
+            let keyframe = Keyframe(timecode: CurrentTimecode.current, parameters: position)
             
             if let oldKeyframe = Sequence.instance.keyframes?.first(where: {$0.timecode == keyframe.timecode}) {
                 let row = Sequence.instance.keyframes?.firstIndex(of: oldKeyframe)
@@ -116,13 +127,13 @@ class SimulationViewController: UIViewController {
         }
     }
     
-    private func updateProgressView(){
+    @objc private func updateProgressView(){
         if let lastFrame = Sequence.instance.keyframes?.last?.timecode.totalFrames{
-            progressView.progress = Float( GlobalTimecode.current.totalFrames) / Float( lastFrame)
+            progressView.progress = Float( CurrentTimecode.current.totalFrames) / Float( lastFrame)
         }
     }
     
-    private func updateAnimationViews() {
+    @objc private func updateAnimationViews() {
         rightAnimationView.update()
         leftAnimationView.update()
     }
@@ -148,6 +159,8 @@ class SimulationViewController: UIViewController {
         self.rightJoystick.isHidden = false
         self.modeControl.isUserInteractionEnabled = false
         self.addButton.isEnabled = true
+        self.orangeBarBottomConstraint.constant += 60
+        self.infoViewBottomConstraint.constant -= 70
         UIView.animate(withDuration: 1.0, delay:0, options: [.curveEaseOut], animations: {
             self.leftJoystickXConstraint.constant += self.view.layer.frame.width
             self.rightJoystickXConstraint.constant -= self.view.layer.frame.width
@@ -169,7 +182,11 @@ class SimulationViewController: UIViewController {
         self.onlineIndicatorLabel.isHidden = false
         self.modeControl.isUserInteractionEnabled = false
         self.addButton.isEnabled = false
+        self.orangeBarBottomConstraint.constant -= 60
+        self.infoViewBottomConstraint.constant += 70
         UIView.animate(withDuration: 1.0, delay:0.0, options: [.curveEaseOut], animations:  {
+            
+            
             self.sequenceNavigationButtons.layer.opacity = 1
             self.onlineIndicator.layer.opacity = self.onlineIndicator.defaultOpacity
             self.onlineIndicatorLabel.layer.opacity = 1
@@ -205,6 +222,10 @@ class SimulationViewController: UIViewController {
         }
     }
     
+    private func setupInfoView(){
+        infoView.layer.cornerRadius = 20
+    }
+    
 }
 
 extension SimulationViewController: SliderControllerDelegate{
@@ -221,10 +242,5 @@ extension SimulationViewController: SliderControllerDelegate{
     }
 }
 
-extension SimulationViewController: GlobalTimecodeDelegate {
-    func didUpdateGlobalTimecode() {
-        updateProgressView()
-    }
-}
 
 

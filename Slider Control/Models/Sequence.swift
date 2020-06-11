@@ -24,7 +24,7 @@ class Sequence{
             for delegate in delegates {
                 delegate.didUpdate()
             }
-            //NotificationCenter.default.post(name: .didUpdateSequence, object: nil)
+            
         }
     }
     
@@ -32,7 +32,6 @@ class Sequence{
     
     func calculateParameters(for timecode: Timecode) -> Parameters{
       
-        
         if let lower = keyframes?.last(where: {$0.timecode.totalFrames <= timecode.totalFrames}), let higher = keyframes?.first(where: {$0.timecode.totalFrames >= timecode.totalFrames}){
                 if higher == lower {
                     return lower.parameters
@@ -55,9 +54,52 @@ class Sequence{
     func sort(){
          self.keyframes?.sort(by: {$0.timecode.totalFrames < $1.timecode.totalFrames})
     }
-    
 }
 
 extension NSNotification.Name {
     static let didUpdateSequence = NSNotification.Name("did-update-sequence")
 }
+
+
+class NewSequenceModel {
+    static func testSequence() -> NewSequenceModel {
+        let sequence = NewSequenceModel()
+        sequence.panKeyframes = Keyframes.testKeyframes(type: .pan)
+        sequence.tiltKeyframes = Keyframes.testKeyframes(type: .tilt)
+        sequence.slideKeyframes = Keyframes.testKeyframes(type: .slide)
+        return sequence
+    }
+    
+    static var instance = NewSequenceModel.testSequence()
+
+    var panKeyframes: Keyframes = Keyframes(type: .pan) {
+        didSet{
+            NotificationCenter.default.post(name: .didUpdateSequence, object: nil)
+        }
+    }
+    
+    var tiltKeyframes: Keyframes = Keyframes(type: .tilt) {
+        didSet{
+            NotificationCenter.default.post(name: .didUpdateSequence, object: nil)
+        }
+    }
+    
+    var slideKeyframes: Keyframes = Keyframes(type: .slide) {
+        didSet{
+            NotificationCenter.default.post(name: .didUpdateSequence, object: nil)
+        }
+    }
+    
+    func calculateParameters(for timecode: Timecode) -> Parameters {
+        
+        let pan = panKeyframes.value(for: timecode)
+        let slide = slideKeyframes.value(for: timecode)
+        let tilt = tiltKeyframes.value(for: timecode)
+        
+        let parameters = Parameters(x: slide, pan: pan, tilt: tilt)
+        print(parameters)
+        return parameters
+    }
+    
+}
+

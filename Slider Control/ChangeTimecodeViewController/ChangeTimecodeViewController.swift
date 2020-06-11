@@ -27,11 +27,11 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     override func viewWillAppear(_ animated: Bool) {
         if Timecode.fullFormat {
-            picker.selectRow(GlobalTimecode.current.min, inComponent: 0, animated: true)
-            picker.selectRow(GlobalTimecode.current.sec, inComponent: 1, animated: true)
-            picker.selectRow(GlobalTimecode.current.frame, inComponent: 2, animated: true)
+            picker.selectRow(CurrentTimecode.current.min, inComponent: 0, animated: true)
+            picker.selectRow(CurrentTimecode.current.sec, inComponent: 1, animated: true)
+            picker.selectRow(CurrentTimecode.current.frame, inComponent: 2, animated: true)
         } else {
-            picker.selectRow(GlobalTimecode.current.totalFrames, inComponent: 0, animated: true)
+            picker.selectRow(CurrentTimecode.current.totalFrames, inComponent: 0, animated: true)
         }
     }
     
@@ -64,7 +64,7 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
         } else {
             timecode = Timecode(frames: picker!.selectedRow(inComponent: 0))
         }
-        GlobalTimecode.current = timecode
+        CurrentTimecode.current = timecode
         
         dismiss(animated: true, completion: nil)
     }

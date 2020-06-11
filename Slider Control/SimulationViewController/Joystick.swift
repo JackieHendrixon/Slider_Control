@@ -71,7 +71,7 @@ class Joystick: UIView {
         self.layer.backgroundColor = UIColor.darkGray.cgColor
         self.layer.cornerRadius = self.layer.bounds.width/2
         self.layer.borderWidth = 4
-        self.layer.borderColor = Settings.orangeColor.cgColor
+        self.layer.borderColor = UIColor.appOrange.cgColor
     }
     
     private func updateStickView() {

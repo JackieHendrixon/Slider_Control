@@ -36,12 +36,9 @@ class Indicator: UIView {
         layer.opacity = defaultOpacity
         layer.shadowRadius = 5
     }
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     
+        override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+            let frame = self.bounds.insetBy(dx: -20, dy: 0)
+            return frame.contains(point) ? self : nil
+        }
 }

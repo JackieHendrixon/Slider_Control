@@ -16,17 +16,10 @@ class TextFieldTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         textField.textColor = UIColor.white
-        textField.layer.borderColor = Settings.orangeColor.cgColor
+        textField.layer.borderColor = UIColor.appOrange.cgColor
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 5
        
         backgroundColor = contentView.backgroundColor;
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

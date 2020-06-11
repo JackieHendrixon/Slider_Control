@@ -13,9 +13,7 @@ class ConnectionViewController: UIViewController {
 
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var calibrateButton: UIButton!
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGesture()
@@ -59,7 +57,6 @@ class ConnectionViewController: UIViewController {
             
         } else {
             SliderController.instance.disconnect()
-            
         }
     }
     
@@ -72,7 +69,6 @@ extension ConnectionViewController: SliderControllerDelegate{
     func didConnect() {
         connectButton.setTitle("Disconnect", for: .normal)
         calibrateButton.isEnabled = true
-        
     }
     
     func didDisconnect() {
@@ -88,5 +84,4 @@ extension ConnectionViewController: UIGestureRecognizerDelegate{
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
         return touch.view == gestureRecognizer.view
     }
-
 }

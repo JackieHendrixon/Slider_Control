@@ -20,11 +20,4 @@ class SegmentedControlTableViewCell: UITableViewCell {
         control.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .normal)
         backgroundColor = contentView.backgroundColor;
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
 }

@@ -18,43 +18,67 @@ class SequenceViewController: UIViewController {
     @IBOutlet weak var onlineIndicator: Indicator!
     @IBOutlet weak var onlineIndicatorLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var plot: PlotView!
+    @IBOutlet weak var slidePlot: NewPlotView!
+    @IBOutlet weak var tiltPlot: NewPlotView!
+    @IBOutlet weak var panPlot: NewPlotView!
     @IBOutlet weak var xPlotLabel: UILabel!
     @IBOutlet weak var panPlotLabel: UILabel!
     @IBOutlet weak var tiltPlotLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
+    
+    var plotsViewModel: PlotsViewModel = {
+        let plotsViewModel = PlotsViewModel(sequence: NewSequenceModel.testSequence())
+        
+        return plotsViewModel
+    }()
+    
+    // MARK: - Views
+    
+//    private let timecodeLabel: TimecodeLabel = {
+//        let label = UILabel(
+//        
+//        
+//        return label
+//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Registering self as the delegate
         SliderController.instance.delegates.append(self)
-        GlobalTimecode.delegates.append(self)
+        plotsViewModel.delegate = self
+        
+        didViewModelUpdate()
+        panPlot.delegate = self
+        tiltPlot.delegate = self
+        slidePlot.delegate = self
         
         rotatePlotLabels()
         updateProgressView()
         updateIndicators()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProgressView), name: .didUpdateCurrentTimecode, object: nil)
     }
     
     // MARK: - Actions
 
     @IBAction func previous(_ sender: UIButton) {
-        GlobalTimecode.previousFrame()
+        CurrentTimecode.previousFrame()
     }
     @IBAction func next(_ sender: UIButton) {
-        GlobalTimecode.nextFrame()
+        CurrentTimecode.nextFrame()
     }
     @IBAction func play(_ sender: UIButton) {
-        if !GlobalTimecode.isRunning {
-            GlobalTimecode.run()
+        if !CurrentTimecode.isRunning {
+            CurrentTimecode.run()
             playButton.setImage(UIImage(named: "Pause"), for: .normal)
         } else {
-            GlobalTimecode.pause()
+            CurrentTimecode.pause()
             playButton.setImage(UIImage(named: "Play"), for: .normal)
         }
     }
     @IBAction func stop(_ sender: UIButton) {
-        GlobalTimecode.stop()
+        CurrentTimecode.stop()
         playButton.setImage(UIImage(named: "Play"), for: .normal)
     }
     
@@ -66,9 +90,9 @@ class SequenceViewController: UIViewController {
         onlineIndicatorLabel.isHidden = SliderController.instance.slider.mode == .live
     }
     
-    private func updateProgressView() {
+    @objc private func updateProgressView() {
         if let lastFrame = Sequence.instance.keyframes?.last?.timecode.totalFrames{
-            progressView.progress = Float( GlobalTimecode.current.totalFrames) / Float( lastFrame)
+            progressView.progress = Float( CurrentTimecode.current.totalFrames) / Float( lastFrame)
         }
     }
     
@@ -77,6 +101,11 @@ class SequenceViewController: UIViewController {
         panPlotLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
         tiltPlotLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
     }
+    
+    
+    
+    
+    
 }
 
 extension SequenceViewController: SliderControllerDelegate{
@@ -92,9 +121,94 @@ extension SequenceViewController: SliderControllerDelegate{
     }
 }
 
-extension SequenceViewController: GlobalTimecodeDelegate {
-    func didUpdateGlobalTimecode() {
-        updateProgressView()
+extension SequenceViewController: PlotsViewModelDelegate {
+    func didViewModelUpdate() {
+        plotsViewModel.configure(panPlot, ofType: .pan)
+        plotsViewModel.configure(tiltPlot, ofType: .tilt)
+        plotsViewModel.configure(slidePlot, ofType: .slide)
+        
+        panPlot.setNeedsDisplay()
+        tiltPlot.setNeedsDisplay()
+        slidePlot.setNeedsDisplay()
+        
+    }
+}
+
+extension SequenceViewController: PlotViewDelegate {
+    func addedPoint(_ point: Point, for view: NewPlotView) {
+        print("addedPoint: \(point)")
+        var keyframes: Keyframes!
+        switch view {
+        case panPlot:
+            keyframes = plotsViewModel.sequence.panKeyframes
+        case tiltPlot:
+            keyframes = plotsViewModel.sequence.tiltKeyframes
+        case slidePlot:
+            keyframes = plotsViewModel.sequence.slideKeyframes
+        default:
+            fatalError()
+        }
+        
+        keyframes.insertValid(point: point)
+        print(keyframes!)
+        NotificationCenter.default.post(name: .didUpdateSequence, object: nil)
+        
+    }
+    
+    func deletedPoint(_ point: Point, for view: NewPlotView) {
+        print("deletedPoint: \(point)")
+        var keyframes: Keyframes!
+        switch view {
+        case panPlot:
+            keyframes = plotsViewModel.sequence.panKeyframes
+        case tiltPlot:
+            keyframes = plotsViewModel.sequence.tiltKeyframes
+        case slidePlot:
+            keyframes = plotsViewModel.sequence.slideKeyframes
+        default:
+            fatalError()
+        }
+        
+        keyframes.delete(point: point)
+        print(keyframes!)
+        NotificationCenter.default.post(name: .didUpdateSequence, object: nil)
+    }
+    
+    func movedPoint(from oldPoint: Point, to newPoint: Point, for view: NewPlotView) {
+        print("movedOldPoint: \(oldPoint) newPoint \(newPoint)")
+        var keyframes: Keyframes!
+        switch view {
+        case panPlot:
+            keyframes = plotsViewModel.sequence.panKeyframes
+        case tiltPlot:
+            keyframes = plotsViewModel.sequence.tiltKeyframes
+        case slidePlot:
+            keyframes = plotsViewModel.sequence.slideKeyframes
+        default:
+            fatalError()
+        }
+        
+        keyframes.move(point: oldPoint, to: newPoint)
+        
+        NotificationCenter.default.post(name: .didUpdateSequence, object: nil)
+    }
+    
+    func movedControlPoint(from oldPoint: Point, to newPoint: Point, parent: Point, secondPoint: Point?, for view: NewPlotView){
+        var keyframes: Keyframes!
+        switch view {
+        case panPlot:
+            keyframes = plotsViewModel.sequence.panKeyframes
+        case tiltPlot:
+            keyframes = plotsViewModel.sequence.tiltKeyframes
+        case slidePlot:
+            keyframes = plotsViewModel.sequence.slideKeyframes
+        default:
+            fatalError()
+        }
+        
+        keyframes.moveControlPoint(old: oldPoint, new: newPoint, parent: parent, second: secondPoint)
+        
+        NotificationCenter.default.post(name: .didUpdateSequence, object: nil)
     }
 }
 

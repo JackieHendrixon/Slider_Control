@@ -18,23 +18,22 @@ class TimecodeLabel: UILabel {
         
         self.font = UIFont.monospacedDigitSystemFont(ofSize: self.font.pointSize, weight: UIFont.Weight.medium)
         
-        
-        GlobalTimecode.delegates.append(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLabel), name: .didUpdateCurrentTimecode, object: nil)
       
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabel), name: .didChangeTimecodeFormat, object: nil)
         updateLabel()
     }
     
+//    override init(frame: CGRect) {
+//        <#code#>
+//    }
+    
     // MARK: - Private functions
     
     @objc private func updateLabel() {
-        self.text = GlobalTimecode.current.toString
+        self.text = CurrentTimecode.current.toString
     }
     
 }
 
-extension TimecodeLabel: GlobalTimecodeDelegate {
-    func didUpdateGlobalTimecode() {
-        updateLabel()
-    }
-}
+

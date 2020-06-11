@@ -29,7 +29,6 @@ class KeyframesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         SliderController.instance.delegates.append(self)
-        GlobalTimecode.delegates.append(self)
         
         tableView.backgroundColor = .clear
         Sequence.instance.sort()
@@ -39,6 +38,10 @@ class KeyframesViewController: UIViewController {
         updateTableView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTableView), name: .didUpdateSequence, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProgressView), name: .didUpdateCurrentTimecode, object: nil)
+        
+
     }
 
     @objc func updateTableView(){
@@ -53,9 +56,9 @@ class KeyframesViewController: UIViewController {
         onlineIndicatorLabel.isHidden = SliderController.instance.slider.mode == .live
     }
     
-    private func updateProgressView() {
+    @objc private func updateProgressView() {
         if let lastFrame = Sequence.instance.keyframes?.last?.timecode.totalFrames{
-            progressView.progress = Float( GlobalTimecode.current.totalFrames) / Float( lastFrame)
+            progressView.progress = Float( CurrentTimecode.current.totalFrames) / Float( lastFrame)
         }
     }
     
@@ -187,10 +190,3 @@ extension KeyframesViewController: SliderControllerDelegate{
     }
 }
 
-extension KeyframesViewController: GlobalTimecodeDelegate {
-    func didUpdateGlobalTimecode() {
-        updateProgressView()
-    }
-    
-    
-}
