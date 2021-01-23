@@ -13,6 +13,7 @@ protocol JoystickDelegate {
     func didUpdate(data: JoystickData, sender: Joystick)
 }
 
+
 // Encapsulates data send from joystick.
 //    x, y - position in cartesian coordinate system, from -100 to 100
 //    angle - angle in polar coordinate system, from 0 to 360, 0 is North, rises clockwise

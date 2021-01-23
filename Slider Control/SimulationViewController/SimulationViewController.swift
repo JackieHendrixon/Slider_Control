@@ -35,6 +35,16 @@ class SimulationViewController: UIViewController {
     
     @IBOutlet weak var infoViewBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var timerValueLabel: UILabel!
+    
+    @IBOutlet weak var panValueLabel: UILabel!
+    @IBOutlet weak var slideValueLabel: UILabel!
+    
+    @IBOutlet weak var tiltValueLabel: UILabel!
+    
+    @IBOutlet weak var timecodeValueLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,10 +66,17 @@ class SimulationViewController: UIViewController {
         updateLayout()
         updateProgressView()
         updateAnimationViews()
+        updateCurrentTimecodeLabel()
+        updateParameters()
+        updateTimelapseInterval()
         
         NotificationCenter.default.addObserver(self, selector: #selector(didSwitchMode), name: .didSwitchMode , object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateProgressView), name: .didUpdateCurrentTimecode, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateCurrentTimecode), name: .didUpdateCurrentTimecode, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTimelapseInterval), name: .didUpdateTimelapseInterval, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateSequence), name: .didUpdateSequence, object: nil)
         
 
     }
@@ -127,7 +144,33 @@ class SimulationViewController: UIViewController {
         }
     }
     
-    @objc private func updateProgressView(){
+    @objc func didUpdateCurrentTimecode(){
+        updateProgressView()
+        updateCurrentTimecodeLabel()
+        updateParameters()
+    }
+    
+    @objc func didUpdateTimelapseInterval(){
+        updateTimelapseInterval()
+    }
+    
+    @objc func didUpdateSequence(){
+        updateParameters()
+        updateAnimationViews()
+    }
+    
+    private func updateParameters(){
+        let parameters = NewSequenceModel.instance.calculateParameters(for: CurrentTimecode.current)
+        panValueLabel.text = String(Int(parameters.pan)) + "°"
+        tiltValueLabel.text = String(Int(parameters.tilt)) + "°"
+        slideValueLabel.text = String(Int(parameters.x)) + "%"
+    }
+    
+    private func updateCurrentTimecodeLabel() {
+        timecodeValueLabel.text = CurrentTimecode.current.toString
+    }
+    
+    private func updateProgressView(){
         if let lastFrame = Sequence.instance.keyframes?.last?.timecode.totalFrames{
             progressView.progress = Float( CurrentTimecode.current.totalFrames) / Float( lastFrame)
         }
@@ -138,6 +181,9 @@ class SimulationViewController: UIViewController {
         leftAnimationView.update()
     }
     
+    private func updateTimelapseInterval(){
+        timerValueLabel.text = String(Int(CurrentTimecode.timecodeInterval)) + "s"
+    }
     @objc func didSwitchMode(){
         if SliderController.instance.slider.mode == .live {
             if modeControl.selectedSegmentIndex != 0 {

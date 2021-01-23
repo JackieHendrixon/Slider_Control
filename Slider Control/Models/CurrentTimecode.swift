@@ -17,7 +17,11 @@ class CurrentTimecode {
         }
     }
     
-    static var timecodeInterval = 1.0
+    static var timecodeInterval = 1.0 {
+        didSet{
+            NotificationCenter.default.post(name: .didUpdateTimelapseInterval, object: nil)
+        }
+    }
     
     static private var timer = Timer()
     
@@ -64,6 +68,8 @@ class CurrentTimecode {
 
 extension NSNotification.Name {
     static let didUpdateCurrentTimecode = NSNotification.Name("did-update-current-timecode")
+    
+    static let didUpdateTimelapseInterval = NSNotification.Name("did-update-timelapse-interval")
 }
 
 

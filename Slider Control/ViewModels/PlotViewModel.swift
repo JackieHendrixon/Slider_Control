@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class PlotsViewModel {
-    var sequence: NewSequenceModel = NewSequenceModel.instance
+    var sequence: NewSequenceModel
     
     weak var delegate: PlotsViewModelDelegate?
     
@@ -35,13 +35,13 @@ extension PlotsViewModel{
         switch ofType {
         case .pan:
             keyframes = sequence.panKeyframes
-            view.gridLayer.max = Point(x:200, y:360)
+            view.gridLayer.max.y = 360
         case .tilt:
             keyframes = sequence.tiltKeyframes
-            view.gridLayer.max = Point(x:200, y:90)
+            view.gridLayer.max.y = 90
         case .slide:
             keyframes = sequence.slideKeyframes
-            view.gridLayer.max = Point(x:200, y:100)
+            view.gridLayer.max.y = 100
         }
         view.gridLayer.setup()
         

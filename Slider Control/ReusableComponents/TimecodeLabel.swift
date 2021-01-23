@@ -34,6 +34,11 @@ class TimecodeLabel: UILabel {
         self.text = CurrentTimecode.current.toString
     }
     
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let frame = self.bounds.insetBy(dx: -20, dy: 0)
+        return frame.contains(point) ? self : nil
+    }
+    
 }
 
 

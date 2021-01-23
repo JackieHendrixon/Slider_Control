@@ -52,6 +52,19 @@ class NewKeyframe {
         
     }
     
+    static func != (lhs: NewKeyframe, rhs: NewKeyframe) -> Bool {
+        var result = lhs.timecode != rhs.timecode || lhs.value != rhs.value
+        if let l = lhs.leftSlope, let r = rhs.leftSlope {
+            result = result || l != r
+        }
+        if let l = lhs.rightSlope, let r = rhs.rightSlope {
+            result = result || l != r
+        }
+        
+        return result
+        
+    }
+    
     var rightSlope: Point?
     var leftSlope: Point?
     

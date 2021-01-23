@@ -27,7 +27,7 @@ class SequenceViewController: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     
     var plotsViewModel: PlotsViewModel = {
-        let plotsViewModel = PlotsViewModel(sequence: NewSequenceModel.testSequence())
+        let plotsViewModel = PlotsViewModel(sequence: NewSequenceModel.instance)
         
         return plotsViewModel
     }()

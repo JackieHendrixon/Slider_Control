@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate {
+class ChangeTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var backgroundView: UIView!
@@ -26,13 +26,7 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if Timecode.fullFormat {
-            picker.selectRow(CurrentTimecode.current.min, inComponent: 0, animated: true)
-            picker.selectRow(CurrentTimecode.current.sec, inComponent: 1, animated: true)
-            picker.selectRow(CurrentTimecode.current.frame, inComponent: 2, animated: true)
-        } else {
-            picker.selectRow(CurrentTimecode.current.totalFrames, inComponent: 0, animated: true)
-        }
+        picker.selectRow(Int(CurrentTimecode.timecodeInterval)-1, inComponent: 0, animated: true)
     }
     
     // MARK: - Navigation
@@ -55,16 +49,8 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     @IBAction func handleTapGesture(_ gestureRecognizer : UITapGestureRecognizer) {
         
-        var timecode:Timecode
-        if Timecode.fullFormat {
-            let min = picker!.selectedRow(inComponent: 0)
-            let sec = picker!.selectedRow(inComponent: 1)
-            let frame = picker!.selectedRow(inComponent: 2)
-            timecode = Timecode(min: min, sec: sec, frame: frame)
-        } else {
-            timecode = Timecode(frames: picker!.selectedRow(inComponent: 0))
-        }
-        CurrentTimecode.current = timecode
+   
+        CurrentTimecode.timecodeInterval = Double(picker!.selectedRow(inComponent: 0)+1)
         
         dismiss(animated: true, completion: nil)
     }
@@ -72,33 +58,19 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
     // MARK: - UIPickerDelegate and UIPickerDataSource.
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if Timecode.fullFormat {
-            return 3
-        } else {
+       
             return 1
-        }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if Timecode.fullFormat {
-            switch component {
-            case 0:
-                return 60
-            case 1:
-                return 60
-            case 2:
-                return Timecode.FPS
-                
-            default:
-                return 0
-            }
-        } else {
-            return 60*60*Timecode.FPS
-        }
+
+            return 1000
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(row);
+        return String(row+1);
     }
     
     // MARK: - UIGestureRecognizerDelegate
