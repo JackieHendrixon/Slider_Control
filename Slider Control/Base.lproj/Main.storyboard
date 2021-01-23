@@ -719,13 +719,14 @@
                                                 <rect key="frame" x="0.0" y="94" width="194" height="17"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Timer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3b-0t-CVL">
-                                                        <rect key="frame" x="0.0" y="0.0" width="178" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="180" height="17"/>
+                                                        <gestureRecognizers/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47K-ki-bp7">
-                                                        <rect key="frame" x="178" y="0.0" width="16" height="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47K-ki-bp7">
+                                                        <rect key="frame" x="180" y="0.0" width="14" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -755,6 +756,9 @@
                                     <constraint firstAttribute="bottomMargin" secondItem="3VV-de-KK9" secondAttribute="bottom" constant="15" id="iTA-ib-NLW"/>
                                     <constraint firstItem="3VV-de-KK9" firstAttribute="centerY" secondItem="Xao-Na-8cw" secondAttribute="centerY" id="ixn-gQ-Xxm"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="2lI-2T-cLy" appends="YES" id="s8E-96-T0r"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -825,12 +829,17 @@
                         <outlet property="onlineIndicator" destination="Ya3-pQ-v4I" id="KWk-xx-C1C"/>
                         <outlet property="onlineIndicatorLabel" destination="FYU-jw-BOS" id="nrJ-7a-2xE"/>
                         <outlet property="orangeBarBottomConstraint" destination="nug-px-WBK" id="aAA-Lk-gbk"/>
+                        <outlet property="panValueLabel" destination="o4W-nU-vlg" id="vHE-d2-KHP"/>
                         <outlet property="playButton" destination="j8h-dj-Thf" id="G1X-Pm-IO0"/>
                         <outlet property="progressView" destination="9hF-qD-plL" id="1j7-Em-YdI"/>
                         <outlet property="rightAnimationView" destination="1tH-kQ-gz7" id="9Ee-oo-r9n"/>
                         <outlet property="rightJoystick" destination="mll-P7-KTC" id="SPZ-p3-WsS"/>
                         <outlet property="rightJoystickXConstraint" destination="pCa-DB-KNl" id="Qzz-qV-XwL"/>
                         <outlet property="sequenceNavigationButtons" destination="SzM-3n-wMv" id="b6w-df-fqe"/>
+                        <outlet property="slideValueLabel" destination="V2J-mA-nuZ" id="OoN-cY-lnx"/>
+                        <outlet property="tiltValueLabel" destination="QEt-3M-JSF" id="3Y4-hL-2lP"/>
+                        <outlet property="timecodeValueLabel" destination="Ndd-g5-SbP" id="48u-h6-YUS"/>
+                        <outlet property="timerValueLabel" destination="47K-ki-bp7" id="0Pk-uD-6fW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gar-qG-3Lg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -849,8 +858,13 @@
                         <action selector="onlineAction:" destination="1Vo-4M-zAF" id="hiJ-z4-uGX"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="2lI-2T-cLy" userLabel="Timer">
+                    <connections>
+                        <segue destination="Yop-u4-Vax" kind="presentation" id="6LJ-7c-8M3"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1802.9296874999998" y="258.59375"/>
+            <point key="canvasLocation" x="1853" y="259"/>
         </scene>
         <!--New Keyframe-->
         <scene sceneID="QYX-mE-rJL">
@@ -1055,7 +1069,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PwH-gs-KO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="aFj-OA-l0I"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="-1273"/>
+            <point key="canvasLocation" x="3229.6875" y="-1273.4375"/>
         </scene>
         <!--Connection View Controller-->
         <scene sceneID="FBe-Xe-4Dy">
@@ -1414,6 +1428,67 @@
             </objects>
             <point key="canvasLocation" x="3230" y="259"/>
         </scene>
+        <!--Change Timer View Controller-->
+        <scene sceneID="rsb-rO-Jz2">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="Yop-u4-Vax" customClass="ChangeTimerViewController" customModule="Slider_Control" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0t2-rH-onM">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFH-JI-2KT">
+                                <rect key="frame" x="0.0" y="284" width="1024" height="170"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KH1-v9-7En">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="170"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="170" id="g1S-KV-UHO"/>
+                                        </constraints>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVx-dL-mlN">
+                                        <rect key="frame" x="957" y="8" width="49" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" red="1" green="0.68063402510000004" blue="0.29475988180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="close:" destination="Hp5-TX-Clg" eventType="touchUpInside" id="j96-mI-NM3"/>
+                                            <action selector="close:" destination="Yop-u4-Vax" eventType="touchUpInside" id="rTq-tC-cAP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="qVx-dL-mlN" firstAttribute="top" secondItem="KH1-v9-7En" secondAttribute="top" constant="8" id="5vS-ZD-HTj"/>
+                                    <constraint firstItem="KH1-v9-7En" firstAttribute="centerY" secondItem="XFH-JI-2KT" secondAttribute="centerY" id="EG7-CC-tLn"/>
+                                    <constraint firstAttribute="bottom" secondItem="KH1-v9-7En" secondAttribute="bottom" id="Khj-dw-kWC"/>
+                                    <constraint firstItem="KH1-v9-7En" firstAttribute="leading" secondItem="XFH-JI-2KT" secondAttribute="leading" id="Nml-Sf-ghB"/>
+                                    <constraint firstItem="KH1-v9-7En" firstAttribute="centerX" secondItem="XFH-JI-2KT" secondAttribute="centerX" id="Nse-Gs-f85"/>
+                                    <constraint firstAttribute="trailing" secondItem="KH1-v9-7En" secondAttribute="trailing" id="RRo-u6-w7J"/>
+                                    <constraint firstAttribute="trailing" secondItem="qVx-dL-mlN" secondAttribute="trailing" constant="18" id="ipZ-0z-WSu"/>
+                                    <constraint firstItem="KH1-v9-7En" firstAttribute="top" secondItem="XFH-JI-2KT" secondAttribute="top" id="qRq-Fv-pPN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XFH-JI-2KT" firstAttribute="centerY" secondItem="cFS-M1-58k" secondAttribute="centerY" id="FK1-u2-DP4"/>
+                            <constraint firstItem="XFH-JI-2KT" firstAttribute="leading" secondItem="cFS-M1-58k" secondAttribute="leading" id="NhV-zx-8q7"/>
+                            <constraint firstItem="XFH-JI-2KT" firstAttribute="centerX" secondItem="cFS-M1-58k" secondAttribute="centerX" id="f4d-Vg-JOi"/>
+                            <constraint firstItem="cFS-M1-58k" firstAttribute="trailing" secondItem="XFH-JI-2KT" secondAttribute="trailing" id="nD0-LM-mc6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cFS-M1-58k"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="XFH-JI-2KT" id="dNK-Zq-ZGm"/>
+                        <outlet property="picker" destination="KH1-v9-7En" id="Nkn-cn-oAc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hJA-TX-MSa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3225" y="1046"/>
+        </scene>
         <!--Simulation-->
         <scene sceneID="Jgx-uR-rXk">
             <objects>
@@ -1471,9 +1546,9 @@
         <image name="knob" width="22" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qVE-Wf-4Q4"/>
+        <segue reference="DN5-qb-5yD"/>
         <segue reference="9CM-Va-dvT"/>
-        <segue reference="JEK-5k-8Jo"/>
-        <segue reference="PSO-lh-dBG"/>
+        <segue reference="zk1-zO-5Xn"/>
+        <segue reference="AyT-1Q-uuP"/>
     </inferredMetricsTieBreakers>
 </document>

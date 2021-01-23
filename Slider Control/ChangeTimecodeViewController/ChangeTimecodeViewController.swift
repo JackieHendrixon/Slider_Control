@@ -93,7 +93,7 @@ class ChangeTimecodeViewController: UIViewController, UIPickerViewDelegate, UIPi
                 return 0
             }
         } else {
-            return 60*60*Timecode.FPS
+            return 300
         }
     }
     

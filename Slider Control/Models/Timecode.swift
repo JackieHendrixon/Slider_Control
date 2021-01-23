@@ -24,7 +24,7 @@ class Timecode: NSObject {
     }
     
     static var FPS: Int = 24
-    static var fullFormat = true {
+    static var fullFormat = false {
         didSet {
             NotificationCenter.default.post(name: .didChangeTimecodeFormat, object: nil)
         }

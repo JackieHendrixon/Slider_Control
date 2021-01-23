@@ -158,6 +158,10 @@ struct Point {
     static func == (lhs: Point, rhs: Point) -> Bool {
          return lhs.x == rhs.x && lhs.y == rhs.y
     }
+    
+    static func != (lhs: Point, rhs: Point) -> Bool {
+        return lhs.x != rhs.x || lhs.y != rhs.y
+    }
     static func +(lhs: Point, rhs: Point) -> Point {
         return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }

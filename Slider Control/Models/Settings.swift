@@ -28,7 +28,7 @@ class Settings{
         case totalFrames, minSecFrame
     }
     
-    var timecodeFormat: TimecodeFormat = .minSecFrame {
+    var timecodeFormat: TimecodeFormat = .totalFrames {
         didSet {
             NotificationCenter.default.post(name: .didChangeTimecodeFormat, object: nil)
         }

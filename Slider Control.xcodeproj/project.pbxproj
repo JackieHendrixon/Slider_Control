@@ -20,6 +20,7 @@
 		F5312DFF23DDDF7D0084F91F /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5312DFE23DDDF7D0084F91F /* AnimationView.swift */; };
 		F5312E0123DDF61E0084F91F /* SliderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5312E0023DDF61E0084F91F /* SliderController.swift */; };
 		F5312E0323DE2C840084F91F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5312E0223DE2C840084F91F /* TabBarController.swift */; };
+		F54615F824938683005E4E68 /* ChangeTimecodeViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54615F724938683005E4E68 /* ChangeTimecodeViewController copy.swift */; };
 		F55F797223DA5602008AF8A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F797123DA5602008AF8A1 /* AppDelegate.swift */; };
 		F55F797423DA5602008AF8A1 /* KeyframesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55F797323DA5602008AF8A1 /* KeyframesViewController.swift */; };
 		F55F797723DA5602008AF8A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F55F797523DA5602008AF8A1 /* Main.storyboard */; };
@@ -75,7 +76,8 @@
 		F5312DFE23DDDF7D0084F91F /* AnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationView.swift; sourceTree = "<group>"; };
 		F5312E0023DDF61E0084F91F /* SliderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderController.swift; sourceTree = "<group>"; };
 		F5312E0223DE2C840084F91F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		F55F796E23DA5602008AF8A1 /* Slider Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slider Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F54615F724938683005E4E68 /* ChangeTimecodeViewController copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeTimecodeViewController copy.swift"; sourceTree = "<group>"; };
+		F55F796E23DA5602008AF8A1 /* MSF Slider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MSF Slider.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F55F797123DA5602008AF8A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F55F797323DA5602008AF8A1 /* KeyframesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyframesViewController.swift; sourceTree = "<group>"; };
 		F55F797623DA5602008AF8A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -211,7 +213,7 @@
 		F55F796F23DA5602008AF8A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F55F796E23DA5602008AF8A1 /* Slider Control.app */,
+				F55F796E23DA5602008AF8A1 /* MSF Slider.app */,
 				F5C1A46A242FD71500DB9FEF /* Slider ControlTests.xctest */,
 			);
 			name = Products;
@@ -272,6 +274,7 @@
 		F5CF412023FDF13D00D4F04E /* ChangeTimecodeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F54615F724938683005E4E68 /* ChangeTimecodeViewController copy.swift */,
 				F5D0D8A623E3358C0044BBAC /* ChangeTimecodeViewController.swift */,
 			);
 			path = ChangeTimecodeViewController;
@@ -325,7 +328,7 @@
 			);
 			name = "Slider Control";
 			productName = Time;
-			productReference = F55F796E23DA5602008AF8A1 /* Slider Control.app */;
+			productReference = F55F796E23DA5602008AF8A1 /* MSF Slider.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F5C1A469242FD71500DB9FEF /* Slider ControlTests */ = {
@@ -413,6 +416,7 @@
 				F5312DFD23DDDECF0084F91F /* Joystick.swift in Sources */,
 				F5312E0123DDF61E0084F91F /* SliderController.swift in Sources */,
 				F50F543B23DC9E81006156AD /* ModifyKeyframeViewController.swift in Sources */,
+				F54615F824938683005E4E68 /* ChangeTimecodeViewController copy.swift in Sources */,
 				F55F797423DA5602008AF8A1 /* KeyframesViewController.swift in Sources */,
 				F55F79A423DA7297008AF8A1 /* Keyframe.swift in Sources */,
 				F59B49E724903CA4007142F6 /* PlotViewModel.swift in Sources */,
@@ -609,17 +613,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RDUN59BZKF;
+				DEVELOPMENT_TEAM = YGWFPVKZM4;
 				INFOPLIST_FILE = "Slider Control/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Frankie.SliderControl;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = Kirx.SliderControl;
+				PRODUCT_NAME = "MSF Slider";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -628,17 +633,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RDUN59BZKF;
+				DEVELOPMENT_TEAM = YGWFPVKZM4;
 				INFOPLIST_FILE = "Slider Control/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Frankie.SliderControl;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = Kirx.SliderControl;
+				PRODUCT_NAME = "MSF Slider";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
